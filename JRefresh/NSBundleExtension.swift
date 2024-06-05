@@ -55,8 +55,14 @@ public extension Bundle {
         } else {
             language = "en"
         }
-        let bundle = Bundle(path: refreshBunle().path(forResource: language, ofType: "lproj")!)
-        let value = bundle?.localizedString(forKey: key, value: value, table: nil)
+        
+        guard let path = refreshBunle().path(path(forResource: language, ofType: "lproj")) else {
+            print("JR:3")
+            return ""
+        }
+        print("JR:4 \(path)")
+        let bundle = Bundle(path: path)
+        let value = bundle?.localizedString(forKey: key, value: nil, table: nil)
         return Bundle.main.localizedString(forKey: key, value: value, table: nil)
     }
 }
