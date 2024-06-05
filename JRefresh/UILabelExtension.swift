@@ -24,7 +24,7 @@ public extension UILabel {
         let size = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
         //NSAttributedStringKey.font
         #if swift(>=4.0)
-        let key = NSAttributedStringKey.font
+        let key = NSAttributedString.Key.font
         #else
         let key = NSFontAttributeName
         #endif
