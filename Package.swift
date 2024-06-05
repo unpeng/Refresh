@@ -4,16 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "MJRefreshSwift",
+    name: "JRefresh",
     platforms: [.iOS(.v10)],
     products: [
-        .library(name: "MJRefreshSwift", targets: ["MJRefreshSwift"]),
+        .library(
+            name: "JRefresh",
+            targets: ["JRefresh"]),
     ],
     targets: [
         .target(
-            name: "MJRefreshSwift",
+            name: "JRefresh",
             path: "JRefresh",
-            resources: [.process("JRefresh.bundle")]
+            resources: [
+                .process("JRefresh.bundle")
+            ]
         ),
     ]
 )
