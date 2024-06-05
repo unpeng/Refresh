@@ -10,14 +10,14 @@ import UIKit
 
 open class JRefreshAutoNormalFooter: JRefreshAutoStateFooter {
 
-    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
+    public var activityIndicatorViewStyle: UIActivityIndicatorView.Style = .gray {
         didSet {
-            loadingView.activityIndicatorViewStyle = activityIndicatorViewStyle
+            loadingView.style = activityIndicatorViewStyle
             setNeedsLayout()
         }
     }
     public lazy var loadingView: UIActivityIndicatorView = {
-        let loadingView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let loadingView = UIActivityIndicatorView(style: .gray)
         loadingView.hidesWhenStopped = true
         
         return loadingView

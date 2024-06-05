@@ -10,9 +10,9 @@ import UIKit
 
 open class JRefreshNormalHeader: JRefreshStateHeader {
 
-    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
+    public var activityIndicatorViewStyle: UIActivityIndicatorView.Style = .gray {
         didSet {
-            loadingView.activityIndicatorViewStyle = activityIndicatorViewStyle
+            loadingView.style = activityIndicatorViewStyle
             setNeedsLayout()
         }
     }
@@ -22,7 +22,7 @@ open class JRefreshNormalHeader: JRefreshStateHeader {
         return arrowView
     }()
     public lazy var loadingView: UIActivityIndicatorView = {
-        let loadingView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let loadingView = UIActivityIndicatorView(style: .gray)
         loadingView.hidesWhenStopped = true
         return loadingView
     }()
@@ -38,7 +38,7 @@ open class JRefreshNormalHeader: JRefreshStateHeader {
         circleLayer.fillColor = UIColor.clear.cgColor
         circleLayer.strokeColor = UIColor.gray.cgColor
         circleLayer.lineWidth = 1.5
-        circleLayer.lineCap = kCALineCapRound
+        circleLayer.lineCap = CAShapeLayerLineCap.round
         circleLayer.strokeStart = 0
         circleLayer.speed = 2
         circleLayer.bounds = CGRect(origin: .zero, size: CGSize(width: 36, height: 36))

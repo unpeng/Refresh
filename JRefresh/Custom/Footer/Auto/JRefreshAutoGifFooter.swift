@@ -15,8 +15,8 @@ open class JRefreshAutoGifFooter: JRefreshAutoStateFooter {
         return gifView
     }()
     
-    lazy var stateImages: Dictionary = [:]
-    lazy var stateDurations: Dictionary = [:]
+    lazy var stateImages: [AnyHashable: Any] = [:]
+    lazy var stateDurations: [AnyHashable: Any] = [:]
     
     override open var state: JRefreshState {
         set(newState) {
