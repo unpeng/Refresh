@@ -10,7 +10,25 @@ import UIKit
 
 public extension Bundle {
     public class func refreshBunle() -> Bundle {
-        // 这里不使用mainBundle是为了适配pod 1.x和0.x
+        
+        let bundleName = "JRefresh_JRefresh"
+
+        let candidates = [
+            // Bundle should be present here when the package is linked into an App.
+            Bundle.main.resourceURL,
+            
+            // Bundle should be present here when the package is linked into a framework.
+            Bundle(for: JRefreshComponent.self).resourceURL,
+            
+            // For command-line tools.
+            Bundle.main.bundleURL
+        ]
+        for candidate in candidates {
+            let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
+            if let bundle = bundlePath.flatMap(Bundle.init(url:)) {
+                return bundle
+            }
+        }
         return Bundle.main
     }
     
