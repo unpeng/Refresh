@@ -25,9 +25,9 @@ public extension Bundle {
         ]
         for candidate in candidates {
             let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
-            if let bundle = bundlePath.flatMap(Bundle.init(url:)) {
-                print("JR:1 \(bundle.bundleURL)")
-                return bundle
+            if let bundle = bundlePath.flatMap(Bundle.init(url:)),let mainBundle = bundle.path(forResource: "JRefresh", ofType: "bundle") {
+                print("JR:1 \(mainBundle.bundleURL)")
+                return mainBundle
             }
         }
         print("JR:2 \(Bundle.main.bundleURL)")
@@ -55,7 +55,7 @@ public extension Bundle {
         } else {
             language = "en"
         }
-        
+
         guard let path = refreshBunle().path(forResource: language, ofType: "lproj") else {
             print("JR:3")
             return ""
