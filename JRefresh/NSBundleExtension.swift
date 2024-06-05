@@ -25,7 +25,9 @@ public extension Bundle {
         ]
         for candidate in candidates {
             let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
-            if let bundle = bundlePath.flatMap(Bundle.init(url:)),let mainBundle = Bundle(path: bundle.path(forResource: "JRefresh", ofType: "bundle")) {
+            if let bundle = bundlePath.flatMap(Bundle.init(url:)),
+               let path = bundle.path(forResource: "JRefresh", ofType: "bundle"),
+               let mainBundle = Bundle(path: path) {
                 print("JR:1 \(mainBundle.bundleURL)")
                 return mainBundle
             }
