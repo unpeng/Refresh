@@ -9,7 +9,7 @@
 import UIKit
 
 open class JRefreshStateHeader: JRefreshHeader {
-
+    
     //MARK: - 刷新时间相关
     /// 利用这个block来决定显示的更新时间文字
     public var lastUpdatedTimeText: ((_ lastUpdatedTime: Date?) -> String)?
@@ -48,7 +48,7 @@ open class JRefreshStateHeader: JRefreshHeader {
                 return
             }
             if lastUpdatedTime != nil {
-                 // 1.获得年月日
+                // 1.获得年月日
                 let calendar = NSCalendar(calendarIdentifier: .gregorian)
                 let cmp1 = calendar?.components([.year, .month, .day, .hour, .minute], from: lastUpdatedTime!)
                 let cmp2 = calendar?.components([.year, .month, .day, .hour, .minute], from: Date())
@@ -87,7 +87,7 @@ open class JRefreshStateHeader: JRefreshHeader {
             }
             super.state = newState
             
-             // 设置状态文字
+            // 设置状态文字
             stateLabel.text = stateTitles[newState.hashValue] as? String
             // 重新设置key（重新显示时间）
             lastUpdatedTimeKey = JRefreshHead.lastUpdateTimeKey
@@ -95,7 +95,7 @@ open class JRefreshStateHeader: JRefreshHeader {
         get {
             return super.state
         }
-    }  
+    }
     
     /// 设置state状态下的文字
     public func setTitle(_ title: String?, _ state: JRefreshState) {
@@ -143,21 +143,4 @@ extension JRefreshStateHeader {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

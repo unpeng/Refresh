@@ -29,7 +29,7 @@ public extension UILabel {
         let key = NSFontAttributeName
         #endif
         if text?.count ?? 0 > 0 {
-            stringWidth = (text as NSString?)?.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [key : self.font], context: nil).width ?? 0
+            stringWidth = (text as NSString?)?.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [key : self.font as Any], context: nil).width ?? 0
         }
         return stringWidth
     }

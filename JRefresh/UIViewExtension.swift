@@ -8,8 +8,8 @@
 
 import UIKit
 
-public extension UIView {
-    public var x: CGFloat {
+extension UIView {
+    var x: CGFloat {
         set(newX) {
             var frame = self.frame
             frame.origin.x = newX
@@ -19,7 +19,7 @@ public extension UIView {
             return self.frame.origin.x
         }
     }
-    public var y: CGFloat {
+    var y: CGFloat {
         set(newY) {
             var frame = self.frame
             frame.origin.y = newY
@@ -29,7 +29,7 @@ public extension UIView {
             return self.frame.origin.y
         }
     }
-    public var width: CGFloat {
+    var width: CGFloat {
         set(newWidth) {
             var frame = self.frame
             frame.size.width = newWidth
@@ -39,7 +39,7 @@ public extension UIView {
             return self.frame.size.width
         }
     }
-    public var height: CGFloat {
+    var height: CGFloat {
         set(newHeight) {
             var frame = self.frame
             frame.size.height = newHeight
@@ -49,7 +49,7 @@ public extension UIView {
             return self.frame.size.height
         }
     }
-    public var size: CGSize {
+    var size: CGSize {
         set(newSize) {
             var frame = self.frame
             frame.size = newSize
@@ -59,7 +59,7 @@ public extension UIView {
             return self.frame.size
         }
     }
-    public var origin: CGPoint {
+    var origin: CGPoint {
         set(newOrigin) {
             var frame = self.frame
             frame.origin = newOrigin

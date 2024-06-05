@@ -25,10 +25,10 @@ public enum JRefreshState: Int {
 
 open class JRefreshComponent: UIView {
     public typealias Block = (() -> ())?
-   
+    
     //MARK: - 刷新回调
     /// 正在刷新的回调
-    var refreshingBlock: Block
+    lazy var refreshingBlock: Block = nil
     /// 回调对象
     var refreshingTarget: Any?
     /// 回调方法
@@ -36,9 +36,9 @@ open class JRefreshComponent: UIView {
     
     //MARK: - 刷新状态控制
     ///开始刷新后的回调(进入刷新状态后的回调)
-    var beginRefreshingCompletionBlock: Block
+    lazy var beginRefreshingCompletionBlock: Block = nil
     ///结束刷新的回调
-    var endRefreshingCompletionBlock: Block
+    lazy var endRefreshingCompletionBlock: Block = nil
     ///是否正在刷新
     public var refreshing: Bool {
         return self.state == .Refreshing || self.state == .WillRefresh
@@ -47,8 +47,17 @@ open class JRefreshComponent: UIView {
     open var state: JRefreshState {
         didSet {
             // 加入主队列的目的是等setState:方法调用完毕、设置完文字后再去布局子控件
-            DispatchQueue.main.async { [weak self] in
+            let _tempBlock = {[weak self] in
                 self?.setNeedsLayout()
+            }
+            
+            if Thread.current.isMainThread {
+                _tempBlock()
+            }
+            else {
+                DispatchQueue.main.async {
+                    _tempBlock()
+                }
             }
         }
     }
@@ -109,7 +118,7 @@ open class JRefreshComponent: UIView {
         super.willMove(toSuperview: newSuperview)
         //如果不是UIScrollView，不做任何事情
         guard let newSuperview = newSuperview,
-        newSuperview.isKind(of: UIScrollView.self)
+              newSuperview.isKind(of: UIScrollView.self)
         else { return }
         // 旧的父控件移除监听
         removeObservers()
@@ -153,7 +162,7 @@ extension JRefreshComponent {
             // 预防正在刷新中时，调用本方法使得header inset回置失败
             if state != .Refreshing {
                 state = .WillRefresh
-                 // 刷新(预防从另一个控制器回到这个控制器的情况，回来要重新刷新一下)
+                // 刷新(预防从另一个控制器回到这个控制器的情况，回来要重新刷新一下)
                 setNeedsDisplay()
             }
         }
@@ -163,9 +172,7 @@ extension JRefreshComponent {
         beginRefreshing()
     }
     public func endRefreshing() {
-        DispatchQueue.main.async { [weak self] in
-            self?.state = .Idle
-        }
+        self.state = .Idle
     }
     public func endRefreshingWithCompletionBlock(_ completionBlock: Block) {
         endRefreshingCompletionBlock = completionBlock
