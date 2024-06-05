@@ -28,7 +28,6 @@ public extension Bundle {
             if let bundle = bundlePath.flatMap(Bundle.init(url:)),
                let path = bundle.path(forResource: "JRefresh", ofType: "bundle"),
                let mainBundle = Bundle(path: path) {
-                print("JR:1 \(mainBundle.bundleURL)")
                 return mainBundle
             }
         }
@@ -59,10 +58,8 @@ public extension Bundle {
         }
 
         guard let path = refreshBunle().path(forResource: language, ofType: "lproj") else {
-            print("JR:3")
             return ""
         }
-        print("JR:4 \(path)")
         let bundle = Bundle(path: path)
         let value = bundle?.localizedString(forKey: key, value: nil, table: nil)
         return Bundle.main.localizedString(forKey: key, value: value, table: nil)
