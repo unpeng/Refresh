@@ -11,7 +11,7 @@ import UIKit
 public extension Bundle {
     public class func refreshBunle() -> Bundle {
         // 这里不使用mainBundle是为了适配pod 1.x和0.x
-        return Bundle(path: Bundle(for: JRefreshComponent.self).path(forResource: "JRefresh", ofType: "bundle")!)!
+        return Bundle(for: JRefreshComponent.self)
     }
     
     public class func arrowImage() -> UIImage {
