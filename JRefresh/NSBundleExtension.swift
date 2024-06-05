@@ -56,7 +56,7 @@ public extension Bundle {
             language = "en"
         }
         
-        guard let path = refreshBunle().path(path(forResource: language, ofType: "lproj")) else {
+        guard let path = refreshBunle().path(forResource: language, ofType: "lproj") else {
             print("JR:3")
             return ""
         }
