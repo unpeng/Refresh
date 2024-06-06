@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "JRefresh"
-  s.version      = "1.5.0"
-  s.summary      = "JRefresh is MJRefresh-swift"
+  s.name         = "MJRefreshSwift"
+  s.version      = "1.5.3"
+  s.summary      = "MJRefreshSwift is MJRefresh-swift"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,12 +25,11 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-  JRefresh is MJRefresh-swift,hehe~
+  MJRefreshSwift is MJRefresh-swift, forked JRefresh
                    DESC
 
-  s.homepage     = "https://github.com/jiangboLee"
+  s.homepage     = "https://github.com/unpeng/Refresh"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
-
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -40,8 +39,6 @@ Pod::Spec.new do |s|
   #
 
   s.license      = "MIT"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
-
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -52,11 +49,7 @@ Pod::Spec.new do |s|
   #  Specify a social_media_url where others can refer to, for example a twitter
   #  profile URL.
   #
-
-  s.author             = { "LEE" => "584556825@qq.com" }
-  # Or just: s.author    = "LEE"
-  # s.authors            = { "LEE" => "584556825@qq.com" }
-  # s.social_media_url   = "http://twitter.com/LEE"
+  s.author             = { "vxi" => "peng.wang@vxichina.com" }
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -80,8 +73,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/jiangboLee/Refresh.git", :tag => "#{s.version}" }
-
+  s.source       = { :git => "https://github.com/unpeng/Refresh.git", :tag => "#{s.version}" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
