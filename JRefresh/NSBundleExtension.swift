@@ -39,7 +39,7 @@ public extension Bundle {
         for candidate in candidates {
             let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
             if let bundle = bundlePath.flatMap(Bundle.init(url:)) {
-                print("JR.spm:\(bundle.bundleURL)")
+                print("JR.nor:\(bundle.bundleURL)")
                 return bundle
             }
         }
