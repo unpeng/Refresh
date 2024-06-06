@@ -8,12 +8,19 @@
 
 import UIKit
 
+private class BundleFinder {}
+
 public extension Bundle {
     public class func refreshBunle() -> Bundle {
         
-        let bundleName = "JRefresh_JRefresh"
+        return normalModule ?? spmModule ?? Bundle.main
+         
+    }
 
-        let candidates = [
+    static var normalModule: Bundle? = {
+        let bundleName = "JRefresh"
+
+        var candidates = [
             // Bundle should be present here when the package is linked into an App.
             Bundle.main.resourceURL,
             
@@ -23,17 +30,48 @@ public extension Bundle {
             // For command-line tools.
             Bundle.main.bundleURL
         ]
+        
+        #if SWIFT_PACKAGE
+            // For SWIFT_PACKAGE.
+            candidates.append(Bundle.module.bundleURL)
+        #endif
+
+        for candidate in candidates {
+            let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
+            if let bundle = bundlePath.flatMap(Bundle.init(url:)) {
+                print("JR.spm:\(bundle.bundleURL)")
+                return bundle
+            }
+        }
+        return nil
+    }()
+    
+    static var spmModule: Bundle? = {
+        let bundleName = "MJRefreshSwift_JRefresh"
+
+        let candidates = [
+            // Bundle should be present here when the package is linked into an App.
+            Bundle.main.resourceURL,
+            
+            // Bundle should be present here when the package is linked into a framework.
+            Bundle(for: BundleFinder.self).resourceURL,
+            
+            // For command-line tools.
+            Bundle.main.bundleURL
+        ]
+
         for candidate in candidates {
             let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
             if let bundle = bundlePath.flatMap(Bundle.init(url:)),
                let path = bundle.path(forResource: "JRefresh", ofType: "bundle"),
                let mainBundle = Bundle(path: path) {
+                print("JR.spm:\(mainBundle.bundleURL)")
                 return mainBundle
             }
         }
-        print("JR:2 \(Bundle.main.bundleURL)")
-        return Bundle.main
-    }
+        return nil
+    }()
+
     
     public class func arrowImage() -> UIImage {
         return UIImage(contentsOfFile: refreshBunle().path(forResource: "arrow@2x", ofType: "png")!)!.withRenderingMode(.alwaysTemplate)
