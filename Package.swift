@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "JRefresh",
+    name: "MJRefreshSwift",
     platforms: [.iOS(.v10)],
     products: [
         .library(
